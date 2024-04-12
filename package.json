@@ -1,6 +1,7 @@
 {
   "name": "angular-spa-to-analog",
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -23,9 +24,11 @@
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
+    "@analogjs/platform": "^1.2.0",
     "@angular-devkit/build-angular": "^17.3.4",
     "@angular/cli": "^17.3.4",
     "@angular/compiler-cli": "^17.3.0",
+    "@nx/vite": "^18.2.4",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
@@ -33,6 +36,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "nx": "^18.2.4",
     "typescript": "~5.4.2"
   }
 }

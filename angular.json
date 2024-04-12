@@ -11,59 +11,40 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@analogjs/platform:vite",
           "options": {
-            "outputPath": "dist/angular-spa-to-analog",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
+            "configFile": "vite.config.ts",
+            "main": "src/main.ts",
+            "outputPath": "dist/client",
+            "tsConfig": "tsconfig.app.json"
           },
+          "defaultConfiguration": "production",
           "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
-              "outputHashing": "all"
-            },
             "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
+              "mode": "development"
+            },
+            "production": {
+              "sourcemap": false,
+              "mode": "production"
             }
-          },
-          "defaultConfiguration": "production"
+          }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@analogjs/platform:vite-dev-server",
+          "defaultConfiguration": "development",
+          "options": {
+            "buildTarget": "angular-spa-to-analog:build",
+            "port": 4200
+          },
           "configurations": {
+            "development": {
+              "buildTarget": "angular-spa-to-analog:build:development",
+              "hmr": true
+            },
             "production": {
               "buildTarget": "angular-spa-to-analog:build:production"
-            },
-            "development": {
-              "buildTarget": "angular-spa-to-analog:build:development"
             }
-          },
-          "defaultConfiguration": "development"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -72,22 +53,7 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
-          }
+          "builder": "@analogjs/platform:vitest"
         }
       }
     }
